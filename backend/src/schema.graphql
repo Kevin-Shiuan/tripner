@@ -1,0 +1,101 @@
+type Query{
+  # basic
+  User(name: String!): User!
+  AllUsers: [User!]
+  Trip(tripID: ID!): Trip!
+  Trips(tripIDs: [ID!]): [Trip!]!
+  UserTrips(name: String!): [Trip!]
+  Location(googleMapID: ID!): Location!
+}
+
+type Mutation{
+  # User
+  createUser(name: String!, password: String!): Status!
+  updateUser(input: UpdateUserInput!): User!
+  # # Trip
+  createTrip(input: CreateTripInput!): Status!
+  updateTrip(input: UpdateTripInput!): Status!
+  addLocation4Trip(tripID: ID!, locations: [ID!]!): Trip!
+  # # Location
+  createLocation(input: createLocationInput): Location!
+
+  # log in
+  SignIn(name: String!, password: String): Status!
+}
+
+type Subscription { # Notice that updateTrip also need subscription!!
+  tripCreated(user_name: String!): ID!
+}
+
+type User {
+  name:     String!
+  password:     String!
+  public_trips:   [ID!]
+  private_trips:  [ID!]  
+  rank:         Int
+}
+
+# basic element
+
+type Trip {
+  tripID:     ID!
+  trip_name:  String!
+  city:       String!
+  date_start: String!
+  date_end:   String!
+  open_to_public:         Boolean!
+  image:      String!
+  tripmate:   [String!]!  
+  unscheduled_locations:  [String!]
+  scheduled_locations:    [String!]
+}
+
+type Location {
+  googleMapID:  String!
+  name:         String!
+}
+
+# return type
+
+type Status {
+  success: Boolean!
+  errorMessage: String
+}
+
+# input
+
+input UpdateUserInput {
+  name:     String!
+  public_trips:   [ID!]
+  private_trips:  [ID!]
+  rank:         Int
+}
+
+input CreateTripInput {
+  trip_name:  String!
+  city:       String!
+  date_start: String!
+  date_end:   String!
+  image:      String!
+  tripmate:   [String!]!
+  open_to_public:         Boolean!
+}
+
+input UpdateTripInput {
+  tripID:     ID!
+  trip_name:  String!
+  city:       String!
+  date_start: String!
+  date_end:   String!
+  tripmate:   [String!]!
+  open_to_public:         Boolean!
+  unscheduled_locations:  [String!]
+  scheduled_locations:    [String!]
+}
+
+input createLocationInput {
+  googleMapID: String!
+  name: String!
+}
+
+# scalar Date

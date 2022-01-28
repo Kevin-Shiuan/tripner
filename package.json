@@ -1,0 +1,11 @@
+{
+  "name": "hw9",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "server": "cd backend && yarn start",
+    "start": "cd frontend && yarn start"
+  },
+  "dependencies": {}
+}
