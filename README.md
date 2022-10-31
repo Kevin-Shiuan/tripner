@@ -1,2 +1,4 @@
-# web_final 
-This is the final project of web programming 1101.  Our topic is tripner, which allows you to find people to travel and help you deal with different problems during the trip.
+# Tripner
+This is a React App that help users to plan trips and save everythings related to specific trips, including photos, electronic tickets, tripmates etc.
+
+Project is currently halted.
