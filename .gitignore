@@ -147,3 +147,6 @@ material-kit-react
 
 # key
 .env
+
+# folder
+build
